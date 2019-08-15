@@ -18,20 +18,15 @@ try {
     */
     
     $mail->SMTPDebug  = 1;
-    $mail->Host = 'mail.volarenglobo.com.mx';
+    $mail->Host = 'mail.siswebs.com.mx';
     $mail->Port = 465; 
-    $mail->Username = 'enriquealducin@volarenglobo.com.mx';  
-    $mail->Password = 'VolarenGlobo1.';
+    $mail->Username = 'enriquealducin@siswebs.com.mx';  
+    $mail->Password = 'Portero1.';
     //Recipients
-    if(isset($_SESSION['usuario'])){
-        $usuario= unserialize((base64_decode($_SESSION['usuario'])));
-    }
-    $correoActual = $usuario->getCorreoUsu();
-    $usuarioActual = $usuario->getNombreUsu(). " " .$usuario->getApellidopUsu(). " ". $usuario->getApellidomUsu();
-    $mail->setFrom(trim($correoActual), $usuarioActual);
-    foreach ($correos as $correo) {
-        $mail->addAddress(trim($correo[0]), $correo[1]);
-    }
+    $mail->setFrom(($correoFrom), $nameFrom);
+  
+    $mail->addAddress($correoTo);
+    
     
     
     /*
@@ -42,9 +37,7 @@ try {
     //$mail->addAddress('enriquealducin@outlook.com', 'Enrique Alducin');     // Add a recipient
     //$mail->addAddress('enriquedamasco58@gmail.com');               // Name is optional
     /// para responder $mail->addReplyTo('info@example.com', 'Information');
-    if(isset($vendedor)){
-        $mail->addCC($vendedor[1],$vendedor[0]);
-    }
+   
     //con copia $mail->addBCC('bcc@example.com');
 
     // Attachments
@@ -59,8 +52,8 @@ try {
     $mail->CharSet = 'UTF-8';
     
     if(!$mail->send()) {
-        echo $error = 'Mail error: '.$mail->ErrorInfo; 
-        echo $cuerpo;
+        $error = 'Mail error: '.$mail->ErrorInfo; 
+        echo "No se pudo mandar el Correo";
     } else {
         echo 'Correo Enviado';
     } 

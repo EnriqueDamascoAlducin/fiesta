@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-08-2019 a las 21:16:09
+-- Tiempo de generación: 15-08-2019 a las 20:11:47
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -57,7 +57,18 @@ CREATE TABLE `graduados` (
 --
 
 INSERT INTO `graduados` (`id`, `nombre`, `apellidos`, `invitados`, `correo`) VALUES
-(1, 'Enrique', 'Damasco Alducin', 23, 'enriquealducin@siswebs.com.mx');
+(1, 'Enrique', 'Damasco Alducin', 23, 'enriquealducin@siswebs.com.mx'),
+(2, 'Juan', 'Valdez Zuñiga', 50, 'jv221197@gmail.com'),
+(3, 'Daniel', 'Sanchez Santillan', 2, 'dsanchezsantillan@gmail.com'),
+(4, 'Luis Gerardo', 'Matehuala Garcia', 18, 'geramg3222@gmail.com'),
+(5, 'Julio', 'Aguilar Valdez', 10, 'jav_construc@hotmail.com'),
+(6, 'Mayanin', 'Martinez Martinez', 3, 'mayaninpatito20@gmail.com'),
+(7, 'Judith', 'Martinez Vargas', 11, '96.judith.martinez@gmail.com'),
+(8, 'Valeria', 'Garcia Gonzalez', 20, 'valeria_gagz@hotmail.com'),
+(9, 'Fernanda', 'Ordoñez Perez', 10, 'fernandaoep@gmail.com'),
+(10, 'Gabriela', 'Bravo Rodriguez', 8, 'gabita.bravo.rodriguez@gmail.com'),
+(11, 'Maricruz', 'Marquez Quezada', 18, 'maricruz.97@outlook.com'),
+(12, 'Nasti Isabel', 'López Godínez', 6, 'issagodinez97@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -80,9 +91,9 @@ CREATE TABLE `invitados` (
 --
 
 INSERT INTO `invitados` (`id`, `nombre`, `graduado`, `mesa`, `status`, `tipo`, `codigo`) VALUES
-(1, 'Sonia Alducin Guajardo', 1, 6, 2, 'A', '1565809486.png'),
-(2, 'Victor Vazquez Velazquez', 1, 6, 2, 'A', '1565809486.png'),
-(3, 'Enrique Damasco Alducin', 1, 6, 2, 'A', '1565809486.png'),
+(1, 'Sonia Alducin Guajardo', 1, 6, 2, 'A', NULL),
+(2, 'Victor Vazquez Velazquez', 1, 6, 2, 'A', NULL),
+(3, 'Enrique Damasco Alducin', 1, 6, 2, 'A', NULL),
 (4, 'Francisca Guajardo', 1, 1, 2, 'A', NULL),
 (5, 'Jasiel Alducin', 1, 1, 2, 'A', NULL),
 (6, 'Diego Alducin', 1, 1, 2, 'A', NULL),
@@ -102,7 +113,18 @@ INSERT INTO `invitados` (`id`, `nombre`, `graduado`, `mesa`, `status`, `tipo`, `
 (20, 'Margarita Martinez', 1, 2, 2, 'A', NULL),
 (21, 'Marlem Gomez', 1, 2, 2, 'A', NULL),
 (22, 'Verenice Gomez', 1, 2, 2, 'A', NULL),
-(23, 'Avril Romero', 1, 2, 2, 'A', NULL);
+(23, 'Avril Romero', 1, 2, 2, 'A', NULL),
+(24, 'Judith Martínez Vargas ', 7, 5, 2, 'A', NULL),
+(25, 'Edith Vargas Martínez ', 7, 5, 2, 'A', NULL),
+(26, 'Marcos Martínez Maldonado ', 7, 5, 2, 'A', NULL),
+(27, 'Abraham Martínez Vargas', 7, 5, 2, 'A', NULL),
+(28, 'Susana Martínez Islas', 7, 5, 2, 'A', NULL),
+(29, 'Rogelio Vargas Martínez ', 7, 5, 2, 'A', NULL),
+(30, 'Lorenza Vargas Martínez ', 7, 5, 2, 'A', NULL),
+(31, 'Fernanda Vargas Aguilar + 1 Bebé', 7, 5, 2, 'A', NULL),
+(32, 'Sra Del Río Trejo', 7, 5, 2, 'A', NULL),
+(33, 'Sr. Del Río Trejo', 7, 5, 2, 'A', NULL),
+(34, 'Armando García Martínez ', 7, 11, 2, 'A', NULL);
 
 -- --------------------------------------------------------
 
@@ -124,7 +146,14 @@ CREATE TABLE `lugaresxMesa` (
 INSERT INTO `lugaresxMesa` (`id`, `graduado`, `mesa`, `lugares`) VALUES
 (1, 1, 1, 10),
 (2, 1, 2, 10),
-(3, 1, 6, 3);
+(3, 1, 6, 3),
+(4, 2, 11, 10),
+(5, 2, 12, 10),
+(6, 2, 15, 10),
+(7, 2, 16, 10),
+(8, 2, 20, 10),
+(9, 7, 5, 10),
+(10, 7, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -178,13 +207,17 @@ ALTER TABLE `graduados`
 -- Indices de la tabla `invitados`
 --
 ALTER TABLE `invitados`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `graduado` (`graduado`),
+  ADD KEY `mesa` (`mesa`);
 
 --
 -- Indices de la tabla `lugaresxMesa`
 --
 ALTER TABLE `lugaresxMesa`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mesa` (`mesa`),
+  ADD KEY `graduado` (`graduado`);
 
 --
 -- Indices de la tabla `mesas`
@@ -200,25 +233,43 @@ ALTER TABLE `mesas`
 -- AUTO_INCREMENT de la tabla `graduados`
 --
 ALTER TABLE `graduados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `invitados`
 --
 ALTER TABLE `invitados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `lugaresxMesa`
 --
 ALTER TABLE `lugaresxMesa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `mesas`
 --
 ALTER TABLE `mesas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `invitados`
+--
+ALTER TABLE `invitados`
+  ADD CONSTRAINT `invitados_ibfk_1` FOREIGN KEY (`graduado`) REFERENCES `graduados` (`id`),
+  ADD CONSTRAINT `invitados_ibfk_2` FOREIGN KEY (`mesa`) REFERENCES `mesas` (`id`);
+
+--
+-- Filtros para la tabla `lugaresxMesa`
+--
+ALTER TABLE `lugaresxMesa`
+  ADD CONSTRAINT `lugaresxMesa_ibfk_1` FOREIGN KEY (`mesa`) REFERENCES `mesas` (`id`),
+  ADD CONSTRAINT `lugaresxMesa_ibfk_2` FOREIGN KEY (`graduado`) REFERENCES `graduados` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

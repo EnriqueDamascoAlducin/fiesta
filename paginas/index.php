@@ -37,6 +37,14 @@
 		float: left;
 
 	}
+	.selectBonito1{
+		width: 49%;
+		max-width: 49%;
+		background-color: #0099CC;
+		border-color:  #0099CC;
+		color: white;
+		height: 35px;
+	}
 	.selectBonito option{
 		background-color: #2BBBAD;
 	}
@@ -47,6 +55,14 @@
 	.selectBonito{
 		width: 100%;
 		max-width: 100%;
+		background-color: #0099CC;
+		border-color:  #0099CC;
+		color: white;
+		height: 35px;
+	}
+	.selectBonito1{
+		width: 100%;
+		max-width: 95%;
 		background-color: #0099CC;
 		border-color:  #0099CC;
 		color: white;
@@ -95,7 +111,7 @@
 							<option value="<?php echo $mesa->id ?>"><?php echo $mesa->mesa ?></option>
 						<?php } ?>
 					</select>
-					<select multiple="" class=" select2 selectBonito"  id="invitados">
+					<select multiple="" class=" select2 selectBonito1"  id="invitados">
 						<option  disabled>Selecciona una mesa</option>
 					</select>
 
@@ -189,8 +205,8 @@
 		      }
 			});
 		
-			$("form")[0].reset();
-		$("#invitados").empty();
+			/*$("form")[0].reset();
+		$("#invitados").empty();*/
 		}
 		</script>
 	<!-- //Counter required files -->

@@ -10,7 +10,7 @@
 			$this->servidor="localhost";
 			$this->bd = "invitados";
 			$this->usr="Siswebs";
-			$this->pass="";
+			$this->pass="Portero1";
 
 		}
 
