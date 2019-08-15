@@ -102,7 +102,7 @@
 					<input type="email"  class="email" name="email" id="correo" placeholder="A que correo se lo mandamos"   required="">
 					<input type="submit" value="Enviar!">
 					<p id="mensajeF" style="background-color: #ff4444;color:white"></p>
-					<p id="mensajeOk" style="background-color: #00C851;color:white"></p>
+					<p id="mensajeOk" style="background-color:white;color:black"></p>
 				</form>
 			<?php } ?>
 		</div>
@@ -189,7 +189,8 @@
 		      }
 			});
 		
-
+			$("form")[0].reset();
+		$("#invitados").empty();
 		}
 		</script>
 	<!-- //Counter required files -->
